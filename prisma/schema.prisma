@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+   relationMode = "prisma"
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  userId        String   @unique
+  firstName     String
+  lastName      String
+  email         String   @unique
+  password      String
+  avatar        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  solutionCount Int      @default(0)
+}
+
+model Challange {
+  id            Int        @id @default(autoincrement())
+  challengeId   String     @unique
+  name          String
+  description   String
+  difficulty    Int
+  type          String
+  solution      String
+  isSolved      Boolean    @default(false)
+  isAttempted   Boolean    @default(false)
+  completedTime DateTime?
+  testCases     TestCase[]
+  hints         Hint[]
+}
+
+model TestCase {
+  id            Int       @id @default(autoincrement())
+  testCaseId    String    
+  inputType     String
+  input         String
+  outputType    String
+  output        String
+  argumentCount Int
+  challenge     Challange @relation(fields: [testCaseId], references: [challengeId])
+  challengeId   String
+}
+
+model Hint {
+  id        Int       @id @default(autoincrement())
+  hintId    String    @unique
+  name      String
+  content   String
+  code      String
+  challenge Challange @relation(fields: [hintId], references: [challengeId])
+  challengeId String
+}

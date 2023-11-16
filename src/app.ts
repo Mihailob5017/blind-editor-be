@@ -1,10 +1,26 @@
-/**
- * The following lines intialize dotenv,
- * so that env vars from the .env file are present in process.env
- */
 import * as dotenv from 'dotenv';
-dotenv.config();
-
-export const sum = (a: number, b: number): number => {
-  return a + b;
+import express from 'express';
+import cors from 'cors';
+import { IController } from 'helpers/types/Controller.types';
+const app = express();
+const mainController: IController = async (req, res) => {
+  res.send('Hello World!');
 };
+
+const main = async () => {
+  // Middleware
+  dotenv.config();
+  app.use(cors());
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  // Main route
+  app.get('/', mainController);
+
+  // Start server
+  app.listen(process.env.PORT, () => {
+    console.log(`Server listening on port ${process.env.PORT}!`);
+  });
+};
+
+main();
