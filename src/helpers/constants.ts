@@ -10,6 +10,19 @@ export const JavascriptVM = new VM({
   sandbox: {},
 });
 
-export const PythonVM = PythonShell;
+export const constructorFunction = (code: string, args: string) => {
+  return `
+      ${code}
+      test(${args});
+  `;
+};
+
+export const compareResults = (
+  output: string,
+  expectedOutput: any,
+  expectedType: string,
+) => {
+  return output === expectedOutput && typeof output === expectedType;
+};
 
 export const uuid = uuidv4;

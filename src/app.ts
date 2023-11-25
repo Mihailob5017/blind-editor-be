@@ -1,7 +1,10 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { IController } from 'helpers/types/Controller.types';
+import { IController } from './helpers/types/Controller.types';
+
+import ChallangeRouter from './routes/Challange.router';
+
 const app = express();
 const mainController: IController = async (req, res) => {
   res.send('Hello World!');
@@ -15,7 +18,11 @@ const main = async () => {
   app.use(express.urlencoded({ extended: true }));
 
   // Main route
+
   app.get('/', mainController);
+
+  // Routes
+  app.use('/challange', ChallangeRouter);
 
   // Start server
   app.listen(process.env.PORT, () => {

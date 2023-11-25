@@ -1,21 +1,12 @@
 interface CodeExecutionOptions {}
 
-export interface ExecuteJSCodeInput {
+export interface ExecuteCodeInput {
   code: string;
-  test: any;
-  options: CodeExecutionOptions;
+  args: string;
+  output: any;
+  outputType: string;
 }
 
-export interface ExecuteJSCodeOutput {
-  success: boolean;
-}
-
-export interface ExecutePythonCodeInput {
-  code: string;
-  test: any;
-  options: CodeExecutionOptions;
-}
-
-export interface ExecutePythonCodeOutput {
+export interface ExecuteCodeOutput {
   success: boolean;
 }
