@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { VM } from 'vm2';
 import { v4 as uuidv4 } from 'uuid';
-import { PythonShell } from 'python-shell';
+import { gql } from 'apollo-server-express';
 
 export const prismaClient: PrismaClient = new PrismaClient();
 
