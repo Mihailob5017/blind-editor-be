@@ -1,7 +1,7 @@
 import {
   ExecuteCodeInput,
   ExecuteCodeOutput,
-} from 'helpers/types/Service.types';
+} from '..//helpers/types/Service.types';
 
 import {
   JavascriptVM,

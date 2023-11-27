@@ -10,7 +10,7 @@ export const JavascriptVM = new VM({
   sandbox: {},
 });
 
-export const constructorFunction = (code: string, args: string) => {
+export const constructorFunction = (code: String, args: String) => {
   return `
       ${code}
       test(${args});
